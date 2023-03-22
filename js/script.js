@@ -9,16 +9,17 @@ createApp({
       emailAdressNumber: 10,
     };
   },
-  created() {
-    for (let i = 0; i < this.emailAdressNumber; i++) {
-      axios
-        .get("https://flynn.boolean.careers/exercises/api/random/mail")
-        .then((res) => {
-          console.log(res.data.response);
-          this.myEmailArr.push(res.data.response);
-
-          // lo assegno alla mia proprietà
-        });
+  async created() {
+    try {
+      for (let i = 0; i < this.emailAdressNumber; i++) {
+        const response = await fetch(
+          "https://flynn.boolean.careers/exercises/api/random/mail"
+        );
+        const data = await response.json();
+        this.myEmailArr.push(data.response);
+      }
+    } catch (error) {
+      console.log(error);
     }
   },
 }).mount("#app");

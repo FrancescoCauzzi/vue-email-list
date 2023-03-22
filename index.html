@@ -31,7 +31,8 @@
     <main>
       <ul>
         <li v-for="(el,index) of myEmailArr">
-          {{ el }}
+          {{ myEmailArr.length === emailAdressNumber ? el : ''
+          }}
 
         </li>
       </ul>
